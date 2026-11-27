@@ -11,11 +11,11 @@ concurrency:
 on:
   push:
     branches:
-      - todo-list
+      - main
 
   pull_request:
     branches:
-      - todo-list
+      - main
 
   workflow_dispatch:
 
@@ -64,8 +64,8 @@ jobs:
     timeout-minutes: 10
     needs: quality-checks
 
-    if: >
-      github.ref == 'refs/heads/todo-list' &&
+    if: >-
+      github.ref == 'refs/heads/main' &&
       (github.event_name == 'push' ||
        github.event_name == 'workflow_dispatch')
 
@@ -88,7 +88,7 @@ jobs:
 
       - name: Verify deployment health
         env:
-          HEALTH_URL: https://py-scripts-lvc0.onrender.com/health/
+          HEALTH_URL: https://taskflow-app-cg22.onrender.com/health/
         run: |
           echo "Waiting for the deployed application to become healthy..."
 

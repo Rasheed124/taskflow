@@ -1,3 +1,4 @@
+
 name: Reset production data
 
 permissions:
@@ -18,12 +19,16 @@ on:
 jobs:
   reset-production-data:
     name: Clear production rows and restore admin access
-    if: >
-      github.ref == 'refs/heads/todo-list' &&
+
+    if: >-
+      github.ref == 'refs/heads/main' &&
       inputs.confirmation == 'CLEAR_TASKFLOW_PRODUCTION_DATA'
+
     runs-on: ubuntu-latest
     timeout-minutes: 15
+
     environment: production-data-reset
+
     env:
       DJANGO_SETTINGS_MODULE: config.settings.production
       SECRET_KEY: ${{ secrets.PRODUCTION_SECRET_KEY }}
@@ -42,8 +47,8 @@ jobs:
           SELECTED_REF: ${{ github.ref }}
           CONFIRMATION: ${{ inputs.confirmation }}
         run: |
-          if [ "$SELECTED_REF" != "refs/heads/todo-list" ]; then
-            echo "Reset refused: select the todo-list production branch."
+          if [ "$SELECTED_REF" != "refs/heads/main" ]; then
+            echo "Reset refused: select the main production branch."
             exit 1
           fi
 
@@ -66,6 +71,6 @@ jobs:
           pip install -r requirements.txt
 
       - name: Clear production data and restore admin access
-        run: >-
-          python manage.py reset_production_data
-          --confirm CLEAR_TASKFLOW_PRODUCTION_DATA
+        run: |
+          python manage.py reset_production_data \
+            --confirm CLEAR_TASKFLOW_PRODUCTION_DATA
