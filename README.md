@@ -1,6 +1,6 @@
 # TaskFlow — Django Todo List Application
 
-A task management application built with Python and Django. This project is being developed incrementally to practise Django fundamentals, application architecture, form handling, database operations, and software engineering principles.
+A task management application built with Python and Django. This project is being developed incrementally to practise Django fundamentals, application architecture, form handling, database operations, and software engineering principles and structure.
 
 ## Technology Stack
 
