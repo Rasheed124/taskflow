@@ -1,0 +1,72 @@
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="theme-color" content="#f5f6fa">
+    <meta name="description" content="Sign in or create a TaskFlow account to organize your tasks and plans.">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="TaskFlow">
+    <meta property="og:title" content="{% block og_title %}TaskFlow{% endblock %}">
+    <meta property="og:description" content="Sign in or create a TaskFlow account to organize your tasks and plans.">
+
+    <title>{% block title %}TaskFlow Authentication{% endblock %}</title>
+    <link rel="icon" type="image/svg+xml" href="{% static 'core/favicon.svg' %}">
+
+    <link
+        rel="stylesheet"
+        href="{% static 'accounts/css/auth.css' %}"
+    >
+    <link
+        rel="stylesheet"
+        href="{% static 'core/css/form_loading.css' %}"
+    >
+
+    {% block extra_css %}{% endblock %}
+</head>
+
+<body class="auth-body">
+
+    <main class="auth-layout">
+
+        <a href="{% url 'core:home' %}" class="auth-brand">
+            <span class="auth-brand-icon">T</span>
+            <span>TaskFlow</span>
+        </a>
+
+        <section class="auth-card">
+
+            {% if messages %}
+                <div class="auth-messages" aria-live="polite">
+                    {% for message in messages %}
+                        <div
+                            class="auth-alert auth-alert-{{ message.tags }}{% if 'verification-toast' in message.tags %} auth-alert-fixed{% endif %}"
+                            role="{% if 'error' in message.tags %}alert{% else %}status{% endif %}"
+                        >
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+            {% block auth_content %}{% endblock %}
+
+        </section>
+
+        <footer class="auth-footer">
+            <p>
+                TaskFlow &copy; {% now "Y" %}.
+                Stay focused and get things done.
+            </p>
+        </footer>
+
+    </main>
+
+    <script src="{% static 'core/js/form_accessibility.js' %}" defer></script>
+
+</body>
+</html>

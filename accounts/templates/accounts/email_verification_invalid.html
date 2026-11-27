@@ -1,0 +1,28 @@
+{% extends "accounts/base_auth.html" %}
+
+{% block title %}Verification Failed | TaskFlow{% endblock %}
+
+{% block auth_content %}
+
+<div class="auth-header">
+    <span class="auth-eyebrow">VERIFICATION UNAVAILABLE</span>
+
+    <h1>{% if expired %}Verification link expired{% else %}Verification link unavailable{% endif %}</h1>
+
+    <p>
+        {% if expired %}
+            This verification link has expired. Request a new link to continue.
+        {% else %}
+            This verification link is invalid, already used, or no longer
+            matches your account details.
+        {% endif %}
+    </p>
+</div>
+
+<div class="auth-alternative">
+    <a href="{% url 'accounts:resend_email_verification' %}">
+        Request a new verification email
+    </a>
+</div>
+
+{% endblock %}

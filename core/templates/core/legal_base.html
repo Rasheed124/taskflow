@@ -1,0 +1,79 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{% block title %}TaskFlow Legal{% endblock %}</title>
+
+    <meta
+        name="description"
+        content="{% block meta_description %}TaskFlow policies and service information.{% endblock %}"
+    >
+
+    <meta name="theme-color" content="#f7f8fc">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="TaskFlow">
+    <meta property="og:title" content="{% block og_title %}TaskFlow{% endblock %}">
+    <meta property="og:description" content="{% block og_description %}TaskFlow policies and service information.{% endblock %}">
+    <link rel="icon" type="image/svg+xml" href="{% static 'core/favicon.svg' %}">
+
+    <link
+        rel="stylesheet"
+        href="{% static 'core/css/legal.css' %}"
+    >
+
+    {% block extra_head %}{% endblock %}
+</head>
+
+<body>
+    <header class="legal-header">
+        <div class="legal-container legal-nav">
+            <a href="{% url 'core:home' %}" class="legal-brand">
+                <span class="legal-brand-icon">T</span>
+                <span>TaskFlow</span>
+            </a>
+
+            <nav class="legal-nav-links" aria-label="Main navigation">
+                <a href="{% url 'core:home' %}">Home</a>
+                <a href="{% url 'core:privacy' %}">Privacy</a>
+                <a href="{% url 'core:terms' %}">Terms</a>
+                <a href="{% url 'accounts:login' %}">Sign in</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="legal-main">
+        <div class="legal-container">
+            <div class="legal-document">
+                <div class="legal-eyebrow">TASKFLOW / LEGAL</div>
+
+                {% block document %}{% endblock %}
+            </div>
+        </div>
+    </main>
+
+    <footer class="legal-footer">
+        <div class="legal-container legal-footer-inner">
+            <div>
+                <a href="{% url 'core:home' %}" class="legal-footer-brand">
+                    TaskFlow
+                </a>
+                <p>Make room for meaningful work.</p>
+            </div>
+
+            <div class="legal-footer-links">
+                <a href="{% url 'core:privacy' %}">Privacy Policy</a>
+                <a href="{% url 'core:terms' %}">Terms of Service</a>
+                <a href="mailto:{{ support_email }}">Contact</a>
+            </div>
+        </div>
+
+        <div class="legal-container legal-copyright">
+            © {% now "Y" %} TaskFlow. All rights reserved.
+        </div>
+    </footer>
+</body>
+</html>

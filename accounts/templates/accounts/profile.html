@@ -1,0 +1,246 @@
+{% extends "tasks/base.html" %}
+
+{% block title %}Account Profile | TaskFlow{% endblock %}
+
+{% block page_heading %}Account Profile{% endblock %}
+
+{% block topbar_action %}
+    <a href="{% url 'tasks:list' %}" class="btn btn-secondary">
+        Back to Tasks
+    </a>
+{% endblock %}
+
+{% block content %}
+
+<div class="profile-page">
+
+    <!-- Profile Introduction -->
+    <div class="profile-intro">
+        <h2>Account Settings</h2>
+        <p>
+            Manage your personal information and account security.
+        </p>
+    </div>
+
+
+    <!-- Email Verification Status -->
+    {% if account_profile.pending_email %}
+
+        <div class="message message-info" role="status">
+
+            <div>
+                <strong>Email change pending verification</strong>
+
+                <p>
+                    Your current email address remains
+                    <strong>{{ request.user.email }}</strong>.
+                </p>
+
+                <p>
+                    You have requested to change your email address to
+                    <strong>{{ account_profile.pending_email }}</strong>.
+                    This change will only become active after the new
+                    address has been verified.
+                </p>
+
+                <p>
+                    If you have not received the verification email,
+                    you can request another one below.
+                </p>
+            </div>
+
+            <form
+                method="POST"
+                action="{% url 'accounts:resend_pending_email_verification' %}"
+            >
+                {% csrf_token %}
+
+                <button type="submit" class="btn btn-secondary">
+                    Request New Verification Link
+                </button>
+            </form>
+
+        </div>
+
+    {% elif not account_profile.email_verified %}
+
+        <div class="message message-warning" role="status">
+
+            <div>
+                <strong>Email verification required</strong>
+
+                <p>
+                    Your email address has not been verified.
+                    Complete email verification to activate your account.
+                </p>
+
+            </div>
+
+            <a
+                href="{% url 'accounts:resend_email_verification' %}"
+                class="btn btn-secondary"
+            >
+                Verify Email Address
+            </a>
+
+        </div>
+
+    {% endif %}
+
+
+    <!-- Profile Overview -->
+    <div class="profile-card">
+
+        <div class="profile-card-header">
+
+            <div class="profile-avatar">
+                {{ request.user.username|first|upper }}
+            </div>
+
+            <div class="profile-user-details">
+
+                <h3>{{ request.user.username }}</h3>
+
+                <p>
+                    {{ request.user.email|default:"No email address added" }}
+                </p>
+
+                <div class="profile-user-badges">
+                    <span class="profile-account-label">
+                        TaskFlow Account
+                    </span>
+
+                    {% if account_profile.email_verified and not account_profile.pending_email %}
+                        <span class="profile-verification-badge" aria-label="Email address verified">
+                            <span aria-hidden="true">✓</span>
+                            Email verified
+                        </span>
+                    {% endif %}
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="profile-divider"></div>
+
+
+        <!-- Personal Information -->
+        <div class="profile-section-heading">
+
+            <h3>Personal Information</h3>
+
+            <p>
+                Update the information associated with your account.
+            </p>
+
+        </div>
+
+        <form method="POST" class="profile-form">
+
+            {% csrf_token %}
+
+            {% if form.non_field_errors %}
+                <div class="form-errors" role="alert">
+
+                    {% for error in form.non_field_errors %}
+                        <p>{{ error }}</p>
+                    {% endfor %}
+
+                </div>
+            {% endif %}
+
+
+            {% for field in form %}
+
+                <div class="form-group">
+
+                    <label for="{{ field.id_for_label }}">
+                        {{ field.label }}
+                    </label>
+
+                    {{ field }}
+
+                    {% if field.help_text %}
+                        <small class="form-help">
+                            {{ field.help_text }}
+                        </small>
+                    {% endif %}
+
+                    {% if field.name == "email" %}
+                        <small class="form-help">
+                            Changing your email address requires
+                            verification before the new address
+                            becomes active. Your current email
+                            remains unchanged until then.
+                        </small>
+                    {% endif %}
+
+                    {% if field.errors %}
+                        <div class="field-errors" role="alert">
+
+                            {% for error in field.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+
+                        </div>
+                    {% endif %}
+
+                </div>
+
+            {% endfor %}
+
+
+            <div class="profile-form-actions">
+
+                <button type="submit" class="btn btn-primary">
+                    Save Changes
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+
+    <!-- Account Security -->
+    <div class="profile-card profile-security-card">
+
+        <div class="profile-section-heading">
+
+            <h3>Account Security</h3>
+
+            <p>
+                Keep your account secure by maintaining a strong password.
+            </p>
+
+        </div>
+
+        <div class="profile-security-item">
+
+            <div class="security-info">
+
+                <h4>Password</h4>
+
+                <p>
+                    Update your password regularly to help protect your account.
+                </p>
+
+            </div>
+
+            <a
+                href="{% url 'accounts:password_change' %}"
+                class="btn btn-secondary"
+            >
+                Change Password
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
+

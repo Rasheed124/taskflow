@@ -1,0 +1,23 @@
+{% extends "accounts/base_auth.html" %}
+
+{% block title %}Email Verified | TaskFlow{% endblock %}
+
+{% block auth_content %}
+
+<div class="auth-header">
+    <span class="auth-eyebrow">ACCOUNT ACTIVATED</span>
+
+    <h1>Your account is ready</h1>
+
+    <p>
+        Sign in to continue to your TaskFlow workspace.
+    </p>
+</div>
+
+<div class="auth-alternative">
+    <a href="{% url 'accounts:login' %}" class="auth-submit">
+        Sign In
+    </a>
+</div>
+
+{% endblock %}

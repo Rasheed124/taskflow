@@ -1,0 +1,572 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="description"
+        content="TaskFlow helps you organize tasks, manage priorities and stay focused on what matters."
+    >
+
+    <meta name="theme-color" content="#f7f8fc">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="TaskFlow">
+    <meta property="og:title" content="TaskFlow — Plan better. Get more done.">
+    <meta property="og:description" content="TaskFlow helps you organize tasks, manage priorities and stay focused on what matters.">
+    <meta property="og:url" content="{{ request.build_absolute_uri }}">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="TaskFlow — Plan better. Get more done.">
+    <meta name="twitter:description" content="TaskFlow helps you organize tasks, manage priorities and stay focused on what matters.">
+
+    <title>TaskFlow — Plan better. Get more done.</title>
+
+    <link rel="icon" type="image/svg+xml" href="{% static 'core/favicon.svg' %}">
+
+    <link
+        rel="stylesheet"
+        href="{% static 'core/css/landing.css' %}"
+    >
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <header class="site-header">
+        <div class="container nav-container">
+
+            <a href="{% url 'core:home' %}" class="brand">
+                <span class="brand-icon">T</span>
+                <span>TaskFlow</span>
+            </a>
+
+            <nav class="desktop-nav" aria-label="Main navigation">
+                <a href="#features">Features</a>
+                <a href="#how-it-works">How it works</a>
+            </nav>
+
+            <div class="nav-actions">
+                <a href="{% url 'accounts:login' %}" class="nav-login">
+                    Sign in
+                </a>
+
+                <a
+                    href="{% url 'accounts:register' %}"
+                    class="btn btn-primary nav-cta"
+                >
+                    Get started
+                    <span aria-hidden="true">→</span>
+                </a>
+            </div>
+
+        </div>
+    </header>
+
+
+    <main>
+
+        <!-- Hero -->
+        <section class="hero-section">
+            <div class="container hero-grid">
+
+                <div class="hero-content">
+
+                    <div class="hero-label">
+                        <span class="hero-label-dot"></span>
+                        A simpler way to stay organized
+                    </div>
+
+                    <h1>
+                        Make room for
+                        <span>meaningful work.</span>
+                    </h1>
+
+                    <p class="hero-description">
+                        Bring your tasks, priorities and daily plans
+                        together in one simple workspace. Stay focused,
+                        keep moving and make progress every day.
+                    </p>
+
+                    <div class="hero-actions">
+                        <a
+                            href="{% url 'accounts:register' %}"
+                            class="btn btn-primary btn-large"
+                        >
+                            Start organizing
+                            <span aria-hidden="true">→</span>
+                        </a>
+
+                        <a
+                            href="#features"
+                            class="hero-secondary-link"
+                        >
+                            Explore features
+                            <span aria-hidden="true">↓</span>
+                        </a>
+                    </div>
+
+                    <div class="hero-trust">
+                        <div class="trust-avatars" aria-hidden="true">
+                            <span>T</span>
+                            <span>F</span>
+                            <span>✓</span>
+                        </div>
+
+                        <p>
+                            A focused workspace for your everyday tasks.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <!-- Dashboard preview -->
+                <div class="hero-visual" aria-hidden="true">
+
+                    <div class="visual-glow"></div>
+
+                    <div class="dashboard-window">
+
+                        <div class="dashboard-topbar">
+                            <div class="window-controls">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+
+                            <span class="preview-label">
+                                TASKFLOW WORKSPACE
+                            </span>
+                        </div>
+
+                        <div class="dashboard-body">
+
+                            <aside class="preview-sidebar">
+                                <div class="preview-brand">
+                                    <span class="preview-brand-icon">T</span>
+                                    TaskFlow
+                                </div>
+
+                                <div class="preview-nav-item active">
+                                    <span>▦</span>
+                                    Overview
+                                </div>
+
+                                <div class="preview-nav-item">
+                                    <span>✓</span>
+                                    My tasks
+                                </div>
+
+                                <div class="preview-nav-item">
+                                    <span>▤</span>
+                                    Categories
+                                </div>
+
+                                <div class="preview-sidebar-bottom">
+                                    <span class="preview-user-avatar">TF</span>
+                                    <div>
+                                        <strong>Your workspace</strong>
+                                        <small>Personal account</small>
+                                    </div>
+                                </div>
+                            </aside>
+
+
+                            <div class="preview-main">
+
+                                <div class="preview-heading">
+                                    <div>
+                                        <span class="preview-eyebrow">
+                                            YOUR WORKSPACE
+                                        </span>
+
+                                        <h3>Good morning!</h3>
+
+                                        <p>
+                                            Here's your progress today.
+                                        </p>
+                                    </div>
+
+                                    <span class="preview-date">
+                                        Today
+                                    </span>
+                                </div>
+
+
+                                <div class="preview-stats">
+
+                                    <div class="stat-card">
+                                        <span>Total tasks</span>
+                                        <strong>12</strong>
+                                        <small>Across your workspace</small>
+                                    </div>
+
+                                    <div class="stat-card">
+                                        <span>Completed</span>
+                                        <strong>08</strong>
+                                        <small>Making great progress</small>
+                                    </div>
+
+                                </div>
+
+
+                                <div class="preview-task-section">
+
+                                    <div class="preview-section-heading">
+                                        <strong>Today's tasks</strong>
+                                        <span>View all →</span>
+                                    </div>
+
+                                    <div class="preview-task completed">
+                                        <span class="task-check">✓</span>
+                                        <div>
+                                            <strong>Review project requirements</strong>
+                                            <small>Work</small>
+                                        </div>
+                                        <span class="task-status done">Done</span>
+                                    </div>
+
+                                    <div class="preview-task">
+                                        <span class="task-check"></span>
+                                        <div>
+                                            <strong>Prepare weekly priorities</strong>
+                                            <small>Planning</small>
+                                        </div>
+                                        <span class="task-status progress">
+                                            In progress
+                                        </span>
+                                    </div>
+
+                                    <div class="preview-task">
+                                        <span class="task-check"></span>
+                                        <div>
+                                            <strong>Complete project documentation</strong>
+                                            <small>Work</small>
+                                        </div>
+                                        <span class="task-status pending">
+                                            Pending
+                                        </span>
+                                    </div>
+
+                                </div>
+
+
+                                <div class="preview-progress">
+                                    <div class="progress-heading">
+                                        <strong>Daily progress</strong>
+                                        <span>67%</span>
+                                    </div>
+
+                                    <div class="progress-track">
+                                        <span></span>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="floating-card floating-card-top">
+                        <span class="floating-icon">✓</span>
+                        <div>
+                            <strong>Task completed</strong>
+                            <small>You're making progress</small>
+                        </div>
+                    </div>
+
+                    <div class="floating-card floating-card-bottom">
+                        <span class="floating-icon purple">↗</span>
+                        <div>
+                            <strong>Stay on track</strong>
+                            <small>One task at a time</small>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- Introduction strip -->
+        <section class="intro-strip">
+            <div class="container intro-inner">
+                <p>
+                    Everything you need to bring more structure
+                    to your day.
+                </p>
+                <span>Simple. Organized. Focused.</span>
+            </div>
+        </section>
+
+
+        <!-- Features -->
+        <section class="features-section section-padding" id="features">
+            <div class="container">
+
+                <div class="section-heading">
+                    <span class="section-eyebrow">BUILT FOR YOUR FLOW</span>
+
+                    <h2>
+                        Less scattered.
+                        <span>More accomplished.</span>
+                    </h2>
+
+                    <p>
+                        Keep your everyday work organized with tools
+                        designed to make managing tasks feel simple.
+                    </p>
+                </div>
+
+
+                <div class="features-grid">
+
+                    <article class="feature-card feature-card-large">
+                        <div class="feature-icon icon-purple">✓</div>
+
+                        <h3>Manage tasks with clarity</h3>
+
+                        <p>
+                            Create, update and organize your tasks
+                            without losing sight of what matters.
+                        </p>
+
+                        <div class="feature-task-preview">
+                            <div>
+                                <span class="mini-check checked">✓</span>
+                                <span>Review weekly goals</span>
+                                <span class="mini-tag">Done</span>
+                            </div>
+
+                            <div>
+                                <span class="mini-check"></span>
+                                <span>Prepare project plan</span>
+                                <span class="mini-tag active-tag">Active</span>
+                            </div>
+
+                            <div>
+                                <span class="mini-check"></span>
+                                <span>Organize priorities</span>
+                                <span class="mini-tag">Upcoming</span>
+                            </div>
+                        </div>
+                    </article>
+
+
+                    <article class="feature-card">
+                        <div class="feature-icon icon-blue">▦</div>
+
+                        <h3>Organize with categories</h3>
+
+                        <p>
+                            Group your tasks into meaningful categories
+                            and keep different responsibilities organized.
+                        </p>
+
+                        <div class="category-preview">
+                            <span>● Work</span>
+                            <span>● Personal</span>
+                            <span>● Planning</span>
+                        </div>
+                    </article>
+
+
+                    <article class="feature-card">
+                        <div class="feature-icon icon-orange">⌕</div>
+
+                        <h3>Find what you need</h3>
+
+                        <p>
+                            Search, filter and sort your tasks to quickly
+                            find the work you're looking for.
+                        </p>
+
+                        <div class="search-preview">
+                            <span>⌕</span>
+                            Search your tasks...
+                            <kbd>⌘ K</kbd>
+                        </div>
+                    </article>
+
+
+                    <article class="feature-card">
+                        <div class="feature-icon icon-green">↗</div>
+
+                        <h3>Track your progress</h3>
+
+                        <p>
+                            Get a clearer picture of your completed
+                            work and keep moving towards your goals.
+                        </p>
+
+                        <div class="mini-progress">
+                            <div>
+                                <span>Weekly progress</span>
+                                <strong>75%</strong>
+                            </div>
+                            <div class="mini-progress-track">
+                                <span></span>
+                            </div>
+                        </div>
+                    </article>
+
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- How it works -->
+        <section class="workflow-section section-padding" id="how-it-works">
+            <div class="container">
+
+                <div class="section-heading">
+                    <span class="section-eyebrow">A SIMPLE WORKFLOW</span>
+
+                    <h2>
+                        Get organized in
+                        <span>three simple steps.</span>
+                    </h2>
+
+                    <p>
+                        Start with a clear plan and build a better
+                        routine around the things you need to do.
+                    </p>
+                </div>
+
+
+                <div class="workflow-grid">
+
+                    <article class="workflow-card">
+                        <span class="step-number">01</span>
+                        <div class="workflow-icon">＋</div>
+
+                        <h3>Create your tasks</h3>
+
+                        <p>
+                            Add the things you need to accomplish
+                            and give every task a clear purpose.
+                        </p>
+                    </article>
+
+
+                    <article class="workflow-card">
+                        <span class="step-number">02</span>
+                        <div class="workflow-icon">▦</div>
+
+                        <h3>Organize your work</h3>
+
+                        <p>
+                            Use categories and priorities to keep
+                            your responsibilities structured.
+                        </p>
+                    </article>
+
+
+                    <article class="workflow-card">
+                        <span class="step-number">03</span>
+                        <div class="workflow-icon">✓</div>
+
+                        <h3>Make consistent progress</h3>
+
+                        <p>
+                            Track completed tasks and keep your
+                            attention on the next important step.
+                        </p>
+                    </article>
+
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- Final CTA -->
+        <section class="cta-section">
+            <div class="container">
+                <div class="cta-card">
+
+                    <div class="cta-decoration cta-decoration-one"></div>
+                    <div class="cta-decoration cta-decoration-two"></div>
+
+                    <div class="cta-content">
+                        <span class="cta-eyebrow">
+                            YOUR NEXT STEP STARTS HERE
+                        </span>
+
+                        <h2>
+                            Give your goals
+                            <br>
+                            a better workflow.
+                        </h2>
+
+                        <p>
+                            Create your workspace, organize your tasks
+                            and start making meaningful progress.
+                        </p>
+
+                        <a
+                            href="{% url 'accounts:register' %}"
+                            class="btn btn-white btn-large"
+                        >
+                            Create your free account
+                            <span aria-hidden="true">→</span>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+
+            <div class="footer-main">
+
+                <div class="footer-brand">
+                    <a href="{% url 'core:home' %}" class="brand">
+                        <span class="brand-icon">T</span>
+                        <span>TaskFlow</span>
+                    </a>
+
+                    <p>
+                        A clearer way to organize your work,
+                        stay focused and get things done.
+                    </p>
+                </div>
+
+                <div class="footer-links">
+                    <strong>Explore</strong>
+                    <a href="#features">Features</a>
+                    <a href="#how-it-works">How it works</a>
+                </div>
+
+                <div class="footer-links">
+                    <strong>Account</strong>
+                    <a href="{% url 'accounts:login' %}">Sign in</a>
+                    <a href="{% url 'accounts:register' %}">Create account</a>
+                    <a href="{% url 'core:privacy' %}">Privacy Policy</a>
+                    <a href="{% url 'core:terms' %}">Terms of Service</a>
+                </div>
+
+            </div>
+
+            <div class="footer-bottom">
+                <p>
+                    © {% now "Y" %} TaskFlow. All rights reserved.
+                </p>
+
+                <span>Stay focused. Keep moving.</span>
+            </div>
+
+        </div>
+    </footer>
+
+</body>
+</html>

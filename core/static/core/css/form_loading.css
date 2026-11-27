@@ -1,0 +1,46 @@
+.form-loading-status {
+    position: fixed;
+    inset: auto auto 1rem 50%;
+    z-index: 1000;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.55rem;
+    box-sizing: border-box;
+    width: max-content;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0.85rem 1rem;
+    transform: translateX(-50%);
+    border: 1px solid #d9deea;
+    border-radius: 12px;
+    background: #ffffff;
+    box-shadow: 0 12px 36px rgba(23, 27, 46, 0.18);
+    color: #3d4558;
+    font-size: 0.9rem;
+    text-align: center;
+    pointer-events: none;
+}
+
+.form-loading-status::before {
+    width: 0.9rem;
+    height: 0.9rem;
+    border: 2px solid currentColor;
+    border-right-color: transparent;
+    border-radius: 50%;
+    content: "";
+    animation: form-loading-spin 0.75s linear infinite;
+}
+
+@keyframes form-loading-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .form-loading-status::before {
+        animation: none;
+        border-right-color: currentColor;
+    }
+}

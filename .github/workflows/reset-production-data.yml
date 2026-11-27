@@ -1,0 +1,71 @@
+name: Reset production data
+
+permissions:
+  contents: read
+
+concurrency:
+  group: taskflow-${{ github.ref }}-operations
+  cancel-in-progress: false
+
+on:
+  workflow_dispatch:
+    inputs:
+      confirmation:
+        description: Type CLEAR_TASKFLOW_PRODUCTION_DATA to continue
+        required: true
+        type: string
+
+jobs:
+  reset-production-data:
+    name: Clear production rows and restore admin access
+    if: >
+      github.ref == 'refs/heads/todo-list' &&
+      inputs.confirmation == 'CLEAR_TASKFLOW_PRODUCTION_DATA'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    environment: production-data-reset
+    env:
+      DJANGO_SETTINGS_MODULE: config.settings.production
+      SECRET_KEY: ${{ secrets.PRODUCTION_SECRET_KEY }}
+      DATABASE_URL: ${{ secrets.PRODUCTION_DATABASE_URL }}
+      PRODUCTION_DB_NAME: ${{ secrets.PRODUCTION_DB_NAME }}
+      ALLOWED_HOSTS: ${{ secrets.PRODUCTION_ALLOWED_HOSTS }}
+      DEFAULT_FROM_EMAIL: ${{ secrets.PRODUCTION_DEFAULT_FROM_EMAIL }}
+      EMAIL_PROVIDER: console
+      PRODUCTION_RESET_ADMIN_USERNAME: ${{ secrets.PRODUCTION_RESET_ADMIN_USERNAME }}
+      PRODUCTION_RESET_ADMIN_EMAIL: ${{ secrets.PRODUCTION_RESET_ADMIN_EMAIL }}
+      PRODUCTION_RESET_ADMIN_PASSWORD: ${{ secrets.PRODUCTION_RESET_ADMIN_PASSWORD }}
+
+    steps:
+      - name: Require the production branch and exact confirmation
+        env:
+          SELECTED_REF: ${{ github.ref }}
+          CONFIRMATION: ${{ inputs.confirmation }}
+        run: |
+          if [ "$SELECTED_REF" != "refs/heads/todo-list" ]; then
+            echo "Reset refused: select the todo-list production branch."
+            exit 1
+          fi
+
+          if [ "$CONFIRMATION" != "CLEAR_TASKFLOW_PRODUCTION_DATA" ]; then
+            echo "Reset refused: the confirmation phrase did not match."
+            exit 1
+          fi
+
+      - name: Check out the production branch
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.14"
+
+      - name: Install application dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Clear production data and restore admin access
+        run: >-
+          python manage.py reset_production_data
+          --confirm CLEAR_TASKFLOW_PRODUCTION_DATA

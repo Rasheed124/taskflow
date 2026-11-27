@@ -1,0 +1,26 @@
+{% extends "accounts/base_auth.html" %}
+
+{% block title %}Confirm Email | TaskFlow{% endblock %}
+
+{% block auth_content %}
+
+<div class="auth-header">
+    <span class="auth-eyebrow">EMAIL VERIFICATION</span>
+
+    <h1>Confirm your email address</h1>
+
+    <p>
+        Confirm that this email address belongs to you
+        to complete your TaskFlow account verification.
+    </p>
+</div>
+
+<form method="POST" class="auth-form">
+    {% csrf_token %}
+
+    <button type="submit" class="auth-submit">
+        Verify Email Address
+    </button>
+</form>
+
+{% endblock %}

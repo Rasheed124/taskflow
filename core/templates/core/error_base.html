@@ -1,0 +1,19 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}TaskFlow{% endblock %}</title>
+    <link rel="icon" type="image/svg+xml" href="{% static 'core/favicon.svg' %}">
+    <link rel="stylesheet" href="{% static 'core/css/error_pages.css' %}">
+</head>
+<body>
+    <main class="error-page" role="main">
+        <p class="error-code">{% block code %}{% endblock %}</p>
+        <h1>{% block heading %}{% endblock %}</h1>
+        <p class="error-message">{% block message %}{% endblock %}</p>
+        <a class="error-home" href="{% url 'core:home' %}">Return to TaskFlow</a>
+    </main>
+</body>
+</html>

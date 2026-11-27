@@ -1,0 +1,250 @@
+
+{% extends "core/legal_base.html" %}
+
+{% block title %}Privacy Policy | TaskFlow{% endblock %}
+
+{% block meta_description %}
+Read how TaskFlow collects, uses, stores and protects account information and task data.
+{% endblock %}
+
+{% block document %}
+
+<div class="legal-heading">
+    <span class="legal-label">YOUR DATA, YOUR TRUST</span>
+    <h1>Privacy Policy</h1>
+    <p class="legal-intro">
+        This Privacy Policy explains how TaskFlow collects, uses,
+        stores and protects information when you use our application.
+    </p>
+    <p class="legal-updated">Last updated: November 21, 2026</p>
+</div>
+
+<section class="legal-section">
+    <h2>1. Introduction</h2>
+    <p>
+        TaskFlow is a task management application designed to help
+        individuals organize tasks, manage categories and keep track
+        of their work.
+    </p>
+    <p>
+        We respect your privacy and are committed to handling your
+        personal information responsibly. This policy describes the
+        information we collect and how it is used when you access
+        TaskFlow.
+    </p>
+</section>
+
+<section class="legal-section">
+    <h2>2. Information We Collect</h2>
+
+    <h3>Account information</h3>
+    <p>When you create an account, we collect information such as:</p>
+    <ul>
+        <li>Username.</li>
+        <li>Email address.</li>
+        <li>Password credentials, stored using Django's password-hashing mechanisms rather than as plain text.</li>
+        <li>Email verification and account status information.</li>
+    </ul>
+
+    <h3>Task and application information</h3>
+    <p>When you use TaskFlow, we process information you provide, including:</p>
+    <ul>
+        <li>Task titles and descriptions.</li>
+        <li>Task categories.</li>
+        <li>Task status, priority and relevant dates.</li>
+        <li>Other information you enter while managing your tasks.</li>
+    </ul>
+
+    <h3>Technical information</h3>
+    <p>
+        Our hosting and application infrastructure may process technical
+        information needed to operate, secure and troubleshoot the service.
+        This may include request information, timestamps and error logs.
+    </p>
+</section>
+
+<section class="legal-section">
+    <h2>3. How We Use Your Information</h2>
+    <p>We use the information collected to:</p>
+    <ul>
+        <li>Create and maintain your TaskFlow account.</li>
+        <li>Authenticate users and protect account access.</li>
+        <li>Store, display and manage your tasks and categories.</li>
+        <li>Send registration verification emails.</li>
+        <li>Process password reset and account-related email requests.</li>
+        <li>Verify email address changes.</li>
+        <li>Maintain application security and troubleshoot technical problems.</li>
+        <li>Improve the reliability and operation of TaskFlow.</li>
+    </ul>
+</section>
+
+<section class="legal-section">
+    <h2>4. Gmail API and Transactional Emails</h2>
+    <p>
+        TaskFlow uses Google's Gmail API to send transactional emails,
+        including account verification, password recovery and other
+        account-related notifications.
+    </p>
+    <p>
+        For this purpose, TaskFlow connects to an authorized Gmail
+        sending account using Google's OAuth 2.0 authorization system.
+        The Gmail permission requested is:
+    </p>
+    <div class="legal-code">
+        https://www.googleapis.com/auth/gmail.send
+    </div>
+    <p>
+        This permission allows TaskFlow to send email through the
+        authorized sending account. TaskFlow does not use this
+        permission to read, search, download or manage your personal
+        Gmail inbox or messages.
+    </p>
+    <p>
+        Email addresses and message content necessary to deliver
+        transactional messages are processed for that purpose.
+        Google processes the relevant information when providing
+        its Gmail API service.
+    </p>
+    <p>
+        TaskFlow does not sell Google user data, use it for advertising,
+        or use it for purposes unrelated to the email functionality
+        described in this policy.
+    </p>
+    <p>
+        TaskFlow's use and transfer of information received from
+        Google APIs will adhere to the
+        <a
+            href="https://developers.google.com/terms/api-services-user-data-policy"
+            target="_blank"
+            rel="noopener noreferrer"
+        >Google API Services User Data Policy</a>,
+        including its Limited Use requirements.
+    </p>
+</section>
+
+<section class="legal-section">
+    <h2>5. How We Share Information</h2>
+    <p>
+        We do not sell or rent your personal information.
+        We may process or share information with service providers
+        when necessary to operate TaskFlow, including:
+    </p>
+    <ul>
+        <li>
+            <strong>Render:</strong> Application hosting and infrastructure
+            used to operate the TaskFlow service.
+        </li>
+        <li>
+            <strong>Google:</strong> Gmail API services used to send
+            transactional emails.
+        </li>
+    </ul>
+    <p>
+        These providers process information as necessary to provide
+        their respective services and under their applicable terms
+        and privacy policies.
+    </p>
+    <p>
+        We may also disclose information where required by applicable
+        law or where reasonably necessary to protect the service,
+        its users or our legal rights.
+    </p>
+</section>
+
+<section class="legal-section">
+    <h2>6. Data Storage and Security</h2>
+    <p>
+        TaskFlow uses application and database infrastructure to store
+        account and task information. Production data is hosted using
+        the application's configured hosting and database services.
+    </p>
+    <p>
+        We apply reasonable technical and organizational measures
+        intended to protect information against unauthorized access,
+        alteration, disclosure or destruction.
+    </p>
+    <p>
+        These measures include password hashing, authentication,
+        user-level access controls, secure application configuration
+        and HTTPS in production.
+    </p>
+    <p>
+        No internet-based service can guarantee absolute security.
+        Users should keep their login credentials confidential.
+    </p>
+</section>
+
+<section class="legal-section">
+    <h2>7. Data Retention</h2>
+    <p>
+        We retain account and task information for as long as needed
+        to provide the service, maintain account functionality,
+        address security issues and meet applicable legal obligations.
+    </p>
+    <p>
+        Information may remain in backups or operational records for
+        a limited period after changes or deletion, where applicable.
+    </p>
+</section>
+
+<section class="legal-section">
+    <h2>8. Your Choices and Rights</h2>
+    <p>
+        You can access and update certain account information through
+        your TaskFlow account.
+    </p>
+    <p>
+        You may contact us to ask questions about your personal
+        information or request access, correction or deletion where
+        applicable law provides those rights.
+    </p>
+    <p>
+        Requests will be reviewed and handled in accordance with
+        applicable legal requirements and legitimate service needs.
+    </p>
+</section>
+
+<section class="legal-section">
+    <h2>9. Cookies and Sessions</h2>
+    <p>
+        TaskFlow uses cookies and session-related technologies
+        required for authentication, session management and security.
+        These include Django session and CSRF protection mechanisms.
+    </p>
+    <p>
+        These technologies help maintain your authenticated session
+        and protect forms and account operations.
+    </p>
+</section>
+
+<section class="legal-section">
+    <h2>10. Children's Privacy</h2>
+    <p>
+        TaskFlow is not designed specifically for children.
+        We do not knowingly seek to collect personal information
+        from children in violation of applicable laws.
+    </p>
+</section>
+
+<section class="legal-section">
+    <h2>11. Changes to This Policy</h2>
+    <p>
+        We may update this Privacy Policy as TaskFlow's features,
+        infrastructure or legal requirements change.
+        Updated versions will be published on this page with a
+        revised update date.
+    </p>
+</section>
+
+<section class="legal-section">
+    <h2>12. Contact</h2>
+    <p>
+        If you have questions about this Privacy Policy or how
+        TaskFlow handles your information, contact us at:
+    </p>
+    <p>
+        <a href="mailto:{{ support_email }}">{{ support_email }}</a>
+    </p>
+</section>
+
+{% endblock %}

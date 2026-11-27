@@ -1,0 +1,36 @@
+{% extends "accounts/base_auth.html" %}
+
+{% block title %}Verify Your Email | TaskFlow{% endblock %}
+
+{% block auth_content %}
+
+<div class="auth-header">
+    <span class="auth-eyebrow">ACCOUNT ACTIVATION</span>
+
+    <h1>Check your inbox</h1>
+
+    <p>
+        Your TaskFlow account has been created.
+        Check your email for a verification link to activate your account.
+    </p>
+</div>
+
+<div class="auth-alternative">
+    <p>
+        The verification link expires after 24 hours.
+        If you cannot find the email, check your spam folder.
+    </p>
+
+    <a href="{% url 'accounts:resend_email_verification' %}">
+        Request another verification email
+    </a>
+</div>
+
+<div class="auth-alternative">
+    <p>
+        Already verified your email?
+        <a href="{% url 'accounts:login' %}">Sign in</a>
+    </p>
+</div>
+
+{% endblock %}

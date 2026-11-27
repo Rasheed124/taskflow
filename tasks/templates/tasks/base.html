@@ -1,0 +1,166 @@
+
+    {% load static %}
+
+    <!doctype html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="theme-color" content="#f5f6fa">
+
+        <title>{% block title %}TaskFlow{% endblock %}</title>
+        <link rel="icon" type="image/svg+xml" href="{% static 'core/favicon.svg' %}">
+
+        <link
+            rel="stylesheet"
+            href="{% static 'tasks/css/style.css' %}"
+        >
+        <link
+            rel="stylesheet"
+            href="{% static 'core/css/form_loading.css' %}"
+        >
+    </head>
+
+    <body>
+        <div class="app-layout">
+
+            <header class="mobile-app-header">
+                <a href="{% url 'tasks:list' %}" class="brand">TaskFlow</a>
+                <details class="mobile-navigation" data-mobile-navigation>
+                    <summary class="mobile-menu-toggle">
+                        <span aria-hidden="true">☰</span>
+                        <span>Menu</span>
+                    </summary>
+                    <div class="mobile-menu-panel">
+                        <nav aria-label="Mobile navigation">
+                            <a href="{% url 'tasks:list' %}">All Tasks</a>
+                            <a href="{% url 'tasks:category_list' %}">Categories</a>
+                            <a href="{% url 'accounts:profile' %}">Account Profile</a>
+                        </nav>
+                        <div class="mobile-menu-account">
+                            <span>{{ request.user.username }}</span>
+                            <form method="POST" action="{% url 'accounts:logout' %}">
+                                {% csrf_token %}
+                                <button type="submit" class="logout-button">Sign out</button>
+                            </form>
+                        </div>
+                    </div>
+                </details>
+            </header>
+
+            <aside class="sidebar">
+
+                <a href="{% url 'tasks:list' %}" class="brand">
+                    TaskFlow
+                </a>
+
+
+
+                <nav class="sidebar-nav">
+                    <a href="{% url 'tasks:list' %}">
+                        All Tasks
+                    </a>
+
+                    <a href="{% url 'tasks:category_list' %}">
+                        Categories
+                    </a>
+
+                    <a href="{% url 'accounts:profile' %}">
+                        Account Profile
+                    </a>
+                </nav>
+
+                <div class="sidebar-account">
+
+                    <div class="sidebar-user">
+                        <div class="user-avatar">
+                            {{ request.user.username|first|upper }}
+                        </div>
+
+                        <div class="user-info">
+                            <strong>{{ request.user.username }}</strong>
+                            <span>Personal workspace</span>
+                        </div>
+                    </div>
+
+                    <form
+                        method="POST"
+                        action="{% url 'accounts:logout' %}"
+                        class="logout-form"
+                    >
+                        {% csrf_token %}
+
+                        <button type="submit" class="logout-button">
+                            <span class="logout-icon">↪</span>
+                            Sign out
+                        </button>
+                    </form>
+
+                </div>
+
+            </aside>
+
+            <main class="main-content">
+
+                <header class="topbar">
+
+                    <div>
+                        <p class="eyebrow">PERSONAL WORKSPACE</p>
+
+                        <h1>
+                            {% block page_heading %}My Tasks{% endblock %}
+                        </h1>
+                    </div>
+
+                    {% block topbar_action %}
+                        <a
+                            href="{% url 'tasks:create' %}"
+                            class="btn btn-primary"
+                        >
+                            + Add Task
+                        </a>
+                    {% endblock %}
+
+                </header>
+
+                <section class="page-content">
+
+                        {% if messages %}
+                            <div class="messages" aria-live="polite">
+                                {% for message in messages %}
+                                    <div
+                                        class="message message-{{ message.tags }}"
+                                        role="{% if 'error' in message.tags %}alert{% else %}status{% endif %}"
+                                    >
+                                        <span>{{ message }}</span>
+
+                                        <button
+                                            type="button"
+                                            class="message-dismiss"
+                                            aria-label="Dismiss notification"
+                                        >
+                                            &times;
+                                        </button>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+
+                    {% block content %}{% endblock %}
+
+                </section>
+
+                <footer class="app-footer">
+                    <p>
+                        TaskFlow &copy; {% now "Y" %}.
+                        Stay focused and get things done.
+                    </p>
+                </footer>
+
+            </main>
+
+        </div>
+        <script src="{% static 'core/js/form_accessibility.js' %}" defer></script>
+        <script src="{% static 'core/js/mobile_navigation.js' %}" defer></script>
+    </body>
+    </html>
